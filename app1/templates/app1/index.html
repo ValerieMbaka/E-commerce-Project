@@ -1,0 +1,157 @@
+{% extends 'app1/layout.html' %}
+{% load static %}
+
+{% block title %} MarketShift {% endblock %}
+
+{% block extra_head %}
+        <style>
+                .about-section {
+                        position: relative;
+                        {#background: url("{%  static 'app1/images/aurora.jpeg' %}") no-repeat center center/cover;#}
+                        background: url('{% if about_section.background_image %} {{ about_section.background_image.url }} {% else %} {% static 'app1/images/aurora.jpeg' %} {% endif %}') no-repeat center center/cover;
+                        padding: 60px 0;
+                        color: white;
+                        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                }
+        </style>
+        <link rel="stylesheet" href="{% static 'app1/css/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+
+        <!-- Carousel Section-->
+        <section id="carousel-section">
+                        <div id="homeCarousel" class="carousel slide mb-0" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                        {% for slider in sliders %}
+                                                <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                                                        class="{% if forloop.first %} active {% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+                                        {% endfor %}
+                                </div>
+                                <div class="carousel-inner">
+                                        {% for slider in sliders %}
+                                                <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                                                        <img src="{{ slider.slider_image.url }}" class="d-block w-100" alt="Slide {{ forloop.counter }}">
+                                                        <div class="carousel-caption d-none d-md-block">
+                                                                <h1> {{ slider.slider_heading }} </h1>
+                                                                <p> {{ slider.slider_description }} </p>
+                                                        </div>
+                                                </div>
+                                        {% endfor %}
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                </button>
+                        </div>
+                </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section py-5">
+                        <div class="container text-center">
+                                {% if about_section %}
+                                        <div class="about-content">
+                                                <h2 class="mb-4"> {{ about_section.about_heading }} </h2>
+                                                <p class="lead"> {{ about_section.about_description1 }} </p>
+                                                <p class="lead"> {{ about_section.about_description2 }} </p>
+                                        </div>
+                                {% else %}
+                                        <p>About section is not available yet.</p>
+                                {% endif %}
+                        </div>
+                </section>
+
+        <!-- Services Section -->
+        <section id="services"  class="services py-5">
+                        <div class="container">
+                                <h2 class="text-center mb-5"> Our Products </h2>
+                                <div class="row">
+                                       {% for service in services %}
+                                                <div class="col-lg-4 col-md-6 mb-4">
+                                                        <div class="service-item">
+                                                                <img src="{% if service.service_image %} {{ service.service_image.url }} {% else %}{% static 'app1/images/slider8.jpeg' %}{% endif %}" class="img-fluid" alt="{{ service.title }}">
+                                                                <h4> {{ service.service_name }} </h4>
+                                                                <p> {{ service.service_description }} </p>
+                                                                <a href="{% url 'products:view_products' %}" class="btn btn-primary"> {{ service.service_button }} </a>
+                                                        </div>
+                                                </div>
+                                       {% empty %}
+                                               <p>No services available at the moment.</p>
+                                       {% endfor %}
+                                </div>
+                        </div>
+                </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials py-5">
+                        <div class="container">
+                                <h2 class="text-center mb-5">What Our Customers Say</h2>
+                                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                        <div class="d-flex justify-content-center">
+                                                                <div class="testimonial-card text-center">
+                                                                        <img src="{% static 'app1/images/slider3.jpeg' %}" class="rounded-circle mb-3" width="80" alt="Customer 1">
+                                                                        <h5>John Doe</h5>
+                                                                        <p class="testimonial-text">"MarketShift has transformed my shopping experience. Highly recommended!"</p>
+                                                                        <div class="stars">
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-half"></i>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                        <div class="d-flex justify-content-center">
+                                                                <div class="testimonial-card text-center">
+                                                                        <img src="{% static 'app1/images/slider5.jpeg' %}" class="rounded-circle mb-3" width="80" alt="Customer 2">
+                                                                        <h5>Jane Smith</h5>
+                                                                        <p class="testimonial-text">"I love how easy it is to shop on MarketShift. Great service and quick delivery!"</p>
+                                                                        <div class="stars">
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                        <div class="d-flex justify-content-center">
+                                                                <div class="testimonial-card text-center">
+                                                                        <img src="{% static 'app1/images/slider4.jpeg' %}" class="rounded-circle mb-3" width="80" alt="Customer 3">
+                                                                        <h5>Michael Lee</h5>
+                                                                        <p class="testimonial-text">"Fantastic platform. I can easily find everything I need at great prices!"</p>
+                                                                        <div class="stars">
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-fill"></i>
+                                                                                <i class="bi bi-star-half"></i>
+                                                                                <i class="bi bi-star"></i>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                        </button>
+                                </div>
+                        </div>
+                </section>
+
+
+{% endblock %}

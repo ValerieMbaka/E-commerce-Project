@@ -1,0 +1,36 @@
+{% extends 'app1/layout.html' %}
+{% load static %}
+
+{% block title %} {{ product.product_name }} {% endblock %}
+
+{% block extra_head %}
+        <link rel="stylesheet" href="{% static 'app1/css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'products/css/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+
+        <div class="container">
+                <div class="row">
+                        <div class="col-md-6">
+                                <img src="{{ product.product_image.url }}" class="img-fluid" alt="{{ product.product_name }}">
+                        </div>
+                        <div class="col-md-6 ms-3" id="product-detail-card">
+                                <h2> {{ product.product_name }} </h2>
+                                <p><strong> Description: </strong> {{ product.product_description }} </p>
+                                <p><strong> Price: </strong> Ksh. {{ product.product_price }} </p>
+                                <p><strong> Stock: </strong> {{ product.product_quantity }} </p>
+                                <form action="{% url 'cart:add_to_cart' product.id %}" method="post" class="mt-3">
+                                        {% csrf_token %}
+                                        <label for="quantity-{{ product.id }}"> Quantity: </label>
+                                        <input type="number" name="quantity" id="quantity-{{ product.id }}" min="1" value="1">
+                                        <button type="submit" class="btn btn-primary"> Add to Cart </button>
+                                </form>
+                        </div>
+                        <a href="{% url 'products:update' product.id %}"> Edit Product Details </a>
+                </div>
+        </div>
+
+
+
+{% endblock %}

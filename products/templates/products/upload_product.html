@@ -1,0 +1,64 @@
+{% extends 'app1/layout.html' %}
+{% load static %}
+
+{% block title %} Add Products {% endblock %}
+
+{% block extra_head %}
+        <link rel="stylesheet" href="{% static 'app1/css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'products/css/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+
+        <!-- Add Products Form -->
+        <div class="container">
+                <div class="row d-flex align-items-center justify-content-center">
+                        <div class="col-md-6">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                                <h2 class="text-center">Add Product</h2>
+
+                                                <div class="mb-3">
+                                                        <input name="product_name"  type="text" placeholder="Enter Product Name"  class="form-control" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                        <!-- Dropdown for categories -->
+                                                        <select name="product_category" class="form-control">
+                                                                <option value=""> Select a Category </option>
+                                                                {% for category in categories %}
+                                                                        <option value="{{ category.id }} {% if category.id == selected_category %} selected {% endif %}">
+                                                                                {{ category.category_name }}</option>
+                                                                {% endfor %}
+                                                        </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                        <input name="product_quantity" type="number" placeholder="Enter Product Quantity"  class="form-control" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                        <input name="product_price"  type="number" placeholder="Enter Product Price"  class="form-control" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                        <input name="product_image" type="file"  class="form-control" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                       <textarea name="product_description" placeholder="Enter Product Description"  class="form-control" required></textarea>
+                                                </div>
+
+                                               <div class="mb-3">
+                                                       <button type="submit" class="btn btn-primary"> Add Product </button>
+                                               </div>
+                                                {#<input type="submit" value="Save" class="btn btn-success">#}
+
+                                </form>
+
+                        </div>
+                </div>
+        </div>
+
+
+{% endblock %}

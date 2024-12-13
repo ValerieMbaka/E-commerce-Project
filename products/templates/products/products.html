@@ -1,0 +1,84 @@
+{% extends 'app1/layout.html' %}
+{% load static %}
+
+{% block title %} Products {% endblock %}
+
+{% block extra_head %}
+        <link rel="stylesheet" href="{% static 'app1/css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'products/css/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+        <!-- Categories Section -->
+        <div class="container mt-5">
+                <h3> Categories </h3>
+                <div class="row">
+                        <div class="col-12 d-flex justify-content-start flex-wrap">
+                                <!-- Display categories horizontally -->
+                                {% for category in categories %}
+                                        <div class="category-card card m-2" style="width: 20rem;">
+                                                {% if category.category_image %}
+                                                        <img src="{{ category.category_image.url }}" class="card-img-top" alt="{{ category.category_name }}">
+                                                {% endif %}
+                                                <div class="card-body">
+                                                        <h5 class="card-title"> {{ category.category_name }} </h5>
+                                                        <p class="card-text"> {{ category.category_description|truncatewords:10 }} </p>
+                                                        <a href="?category={{ category.id }}" class="btn btn-primary"> View Products </a>
+                                                </div>
+                                        </div>
+                                {% endfor %}
+                        </div>
+                </div>
+        </div>
+
+        <!-- Products Section -->
+        <div class="container mt-5" id="products">
+                <h3> Products </h3>
+                <div class="row">
+                        {% for product in page_obj %}
+                                <div class="col-md-4 mb-4">
+                                        <div class="product-card card" id="product-card" style="width: 20rem;">
+                                                {% if product.product_image %}
+                                                        <img src="{{ product.product_image.url }}" class="card-img-top" alt="{{ product.product_name }}">
+                                                {% endif %}
+                                                <div class="card-body">
+                                                        <h5 class="card-title"> {{ product.product_name }} </h5>
+                                                        <p class="card-text"> {{ product.product_description|truncatewords:10 }} </p>
+                                                        <p class="card-text"><small> Items in Stock: {{ product.product_quantity }} </small></p>
+                                                        <a href="{% url 'products:product_details' product.id %}" class="btn btn-success details-button"> View Details </a>
+                                                </div>
+                                        </div>
+                                </div>
+                        {% endfor %}
+                </div>
+
+                <!-- Pagination Controls -->
+                <div class="pagination mt-4">
+                        <ul class="pagination justify-content-center">
+                                {% if page_obj.has_previous %}
+                                        <li class="page-item">
+                                                <a class="page-link" href="?page=1{% if selected_category %}&category={{ selected_category }}{% endif %}">First</a>
+                                        </li>
+                                        <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Previous</a>
+                                        </li>
+                                {% endif %}
+                                <li class="page-item active">
+                                        <span class="page-link">
+                                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                                        </span>
+                                </li>
+                                {% if page_obj.has_next %}
+                                        <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Next</a>
+                                        </li>
+                                        <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Last</a>
+                                        </li>
+                                {% endif %}
+                        </ul>
+                </div>
+        </div>
+
+
+{% endblock %}

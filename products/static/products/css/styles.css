@@ -1,0 +1,109 @@
+/*Upload Product Page Styling*/
+.form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #99c0e8;
+}
+
+.col-md-6 {
+        background: rgba(128, 200, 235, 0.81);
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+}
+
+.form-control, .form-select {
+        height: 45px;
+        font-size: 16px;
+        border-radius: 6px;
+}
+
+.form-control, .form-select {
+        height: 45px;
+        font-size: 16px;
+        border-radius: 6px;
+        padding: 10px;
+        background-color: #b9d1e4;
+        border: 1px solid #ddd;
+        width: 100%;
+        margin-bottom: 15px;
+        transition: border-color 0.3s ease;
+}
+
+.btn {
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 6px;
+}
+
+.category-card, .product-card {
+        margin: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        border-radius: 10px;
+        background: rgba(117, 203, 246, 0.81);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover, .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#product-card {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 100%;
+}
+
+.category-card img, .product-card img {
+        height: 200px;
+        object-fit: cover;
+}
+
+#product-card .card-body{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 2px;
+}
+
+#product-card .card-body h5 {
+        font-size: 20px;
+        font-weight: bold;
+}
+
+#product-card .card-body p {
+        font-size: 16px;
+        color: #101010;
+}
+
+#product-card .details-button {
+        background-color: #28a745;
+        color: #101010;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+}
+
+#product-card .details-button:hover {
+        background-color: rgb(6, 151, 214);
+}
+
+#product-detail-card {
+        justify-content: center;
+        align-items: center;
+        color: #101010;
+        border: none;
+        padding: 20px;
+        border-radius: 8px;
+        font-size: 16px;
+}

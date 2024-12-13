@@ -1,0 +1,70 @@
+{% extends 'app1/layout.html' %}
+{% load static %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block body %}
+
+        <div class="container">
+                <div class="row d-flex align-items-center justify-content-center">
+                        <div class="col-md-6">
+                                <form action="/update/{{ product.id }}/" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                                <h2 class="text-center"> Update Product Details </h2>
+
+                                                <div class="mb-3">
+                                                        <input name="product_name"  type="text" placeholder="Product Name"  class="form-control" value="{{ product.product_name }}" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                        <p> {{ product.product_category }}</p>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                        <!-- Dropdown for categories -->
+                                                        <select name="product_category" class="form-control">
+                                                                <option value=""> Select a Category </option>
+                                                                {% for category in categories %}
+                                                                        <option value="{{ category.id }} {% if category.id == selected_category %} selected {% endif %}">
+                                                                                {{ category.category_name }}</option>
+                                                                {% endfor %}
+                                                        </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                        <input name="product_quantity" type="number" placeholder="Product Quantity"  class="form-control" value="{{ product.product_quantity }}" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                        <input name="product_price"  type="number" placeholder="Product Price"  class="form-control" value="{{ product.product_price }}" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                         <img src="{{ product.product_image.url }}" alt="No Image" width="50px">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                        <input name="product_image" type="file"  class="form-control" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                       <textarea name="product_description" placeholder="Product Description"  class="form-control" required> {{ product.product_description }}</textarea>
+                                                </div>
+
+                                               <div class="mb-3">
+                                                       <button type="submit" class="btn btn-primary"> Update Product </button>
+                                               </div>
+
+                                                <div class="mb-3">
+                                                        <button class="btn btn-danger"> <a href="{% url 'products:delete' product.id %}"> Delete Product </a></button>
+                                                </div>
+
+
+                                </form>
+
+                        </div>
+                </div>
+        </div>
+
+{% endblock %}

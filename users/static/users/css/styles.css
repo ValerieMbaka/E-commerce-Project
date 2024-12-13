@@ -1,0 +1,172 @@
+/*Sign Up Page Styling*/
+.form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #e9f7fa;
+}
+
+.col-md-6 {
+        background: #8fc4f3;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        width: 100%;
+}
+
+.form-control, .form-select {
+        height: 45px;
+        font-size: 16px;
+        border-radius: 6px;
+        padding: 10px;
+        background-color: #b9d1e4;
+        border: 1px solid #ddd;
+        width: 100%;
+        margin-bottom: 15px;
+        transition: border-color 0.3s ease;
+}
+
+.btn {
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 6px;
+        width: 100%;
+        background-color: #764ba2;  /* Consistent with the rest of the site */
+        border: none;
+        color: white;
+        transition: background-color 0.3s ease;
+}
+
+.btn-login {
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 6px;
+        width: 100%;
+        background-color: #764ba2;  /* Consistent with the rest of the site */
+        border: none;
+        color: white;
+        transition: background-color 0.3s ease;
+}
+
+a {
+        color: #764ba2;
+        text-decoration: none;
+}
+
+a:hover {
+        text-decoration: underline;
+        color: green;
+}
+
+.form-control:focus {
+        border-color: #764ba2;
+        outline: none;
+        box-shadow: 0 0 5px rgba(118, 75, 162, 0.5);
+}
+
+/* dashboard.css */
+.container {
+        margin-top: 50px;
+}
+
+.sidebar {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+        list-style-type: none;
+        padding: 0;
+}
+
+.sidebar ul li {
+        margin: 10px 0;
+}
+
+.sidebar ul li a {
+        color: #101010;
+        text-decoration: none;
+        font-size: 16px;
+}
+
+.sidebar ul li a:hover {
+        text-decoration: underline;
+}
+
+.content {
+        padding-left: 30px;
+}
+
+.profile-info img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        margin-bottom: 20px;
+}
+
+.section-title {
+        font-size: 24px;
+        margin-top: 30px;
+        color: #333;
+}
+
+.update-form .form-control {
+        margin-bottom: 15px;
+}
+
+.update-form button {
+        width: 100%;
+}
+
+.modal-content {
+        border-radius: 8px;
+}
+
+.modal-footer .btn {
+        width: 120px;
+}
+
+.profile-section {
+        margin-top: 20px;
+        text-align: center;
+}
+
+.profile-section h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+}
+
+.profile-section img {
+        margin-bottom: 15px;
+        border: 2px solid #ccc;
+        padding: 5px;
+}
+
+.profile-section input[type="file"] {
+        margin: 0 auto;
+        width: 75%;
+        padding: 5px;
+        display: block;
+}
+
+.profile-section button {
+        margin-top: 10px;
+}
+
+.profile-picture-section {
+        text-align: center;
+        margin-top: 20px;
+}
+
+.profile-picture-preview img {
+        border: 3px solid #ccc;
+        transition: border-color 0.3s;
+}
+
+.profile-picture-preview img:hover {
+        border-color: #007bff;
+}
